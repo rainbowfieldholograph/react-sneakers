@@ -1,25 +1,21 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import styles from './Card.module.scss'
 import ContentLoader from 'react-content-loader'
 import AppContext from '../../Context'
 
-const Card = ({
-  id,
-  title,
-  price,
-  img,
-  onPlus,
-  onAddToFavorite,
-  favorited = false,
-  loading = false,
-}) => {
-  const { isItemAdded } = useContext(AppContext)
-  const [isFavorite, setIsFavorite] = useState(favorited)
+import likedImg from '../../img/heart-liked.svg'
+import unlikedImg from '../../img/heart-unliked.svg'
+import checkedImg from '../../img/btn-checked.svg'
+import plusImg from '../../img/btn-plus.svg'
+
+const Card = ({ id, title, price, img, loading = false, onAddToFavorite, onPlus }) => {
+  const { isItemAdded, isItemFavorite, cartItems } = useContext(AppContext)
   const obj = { id, parentId: id, title, img, price }
+
+  // console.log(p)
 
   const onClickFavorite = () => {
     onAddToFavorite(obj)
-    setIsFavorite(!isFavorite)
   }
 
   const onClickPlus = () => {
@@ -47,13 +43,10 @@ const Card = ({
         <>
           {onAddToFavorite && (
             <div className={styles.favorite} onClick={onClickFavorite}>
-              <img
-                src={isFavorite ? '/img/heart-liked.svg' : '/img/heart-unliked.svg'}
-                alt="Unlinked"
-              />
+              <img src={isItemFavorite(id) ? likedImg : unlikedImg} alt="Unlinked" />
             </div>
           )}
-          <img width={'100%'} height={135} src={img} alt="Sneaker"></img>
+          <img width={'100%'} height={135} src={img} alt="Sneaker" />
           <h5>{title}</h5>
           <div className="d-flex justify-between align-center mt-5">
             <div className="d-flex flex-column">
@@ -62,10 +55,8 @@ const Card = ({
             </div>
             {onPlus && (
               <button className="button" onClick={onClickPlus}>
-                <img
-                  src={isItemAdded(id) ? '/img/btn-checked.svg' : '/img/btn-plus.svg'}
-                  alt="Plus"
-                />
+                <img src={isItemAdded(id) ? checkedImg : plusImg} alt="Plus" />
+                {console.log(cartItems)}
               </button>
             )}
           </div>

@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import AppContext from '../../Context'
 
+import arrowImg from '../../img/arrow.svg'
+
 const Info = ({ img, title, description }) => {
   const { setCartOpened } = useContext(AppContext)
 
@@ -15,7 +17,7 @@ const Info = ({ img, title, description }) => {
         }}
         className="greenButton"
       >
-        <img src="/img/arrow.svg" alt="Arrow" />
+        <img src={arrowImg} alt="Arrow" />
         Вернуться назад
       </button>
     </div>

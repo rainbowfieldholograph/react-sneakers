@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import Card from '../components/Card/Card'
 
+import searchImg from '../img/search.svg'
+import removeImg from '../img/btn-remove.svg'
+
 const Home = ({ items, onAddToCart, onAddToFavorite, isLoading }) => {
   const [search, setSearch] = useState('')
 
@@ -21,7 +24,7 @@ const Home = ({ items, onAddToCart, onAddToFavorite, isLoading }) => {
       <Card
         key={index}
         onPlus={(obj) => onAddToCart(obj)}
-        onAddToFavorite={onAddToFavorite}
+        onAddToFavorite={(obj) => onAddToFavorite(obj)}
         loading={isLoading}
         {...item}
       />
@@ -33,15 +36,10 @@ const Home = ({ items, onAddToCart, onAddToFavorite, isLoading }) => {
       <div className="d-flex align-center mb-40 justify-between">
         <h1>{search ? `Поиск по запросу: ${search}` : 'Все кроссовки'}</h1>
         <div className="search-block d-flex">
-          <img src="/img/search.svg" alt="Search"></img>
+          <img src={searchImg} alt="Search" />
           <input maxLength={30} onChange={onChangeInput} value={search} placeholder="Поиск..." />
           {search && (
-            <img
-              onClick={onClickRemove}
-              className="removeBtn cu-p"
-              src="/img/btn-remove.svg"
-              alt="Remove"
-            />
+            <img onClick={onClickRemove} className="removeBtn cu-p" src={removeImg} alt="Remove" />
           )}
         </div>
       </div>

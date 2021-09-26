@@ -1,6 +1,6 @@
 import './App.scss'
 import 'macro-css'
-import { BrowserRouter, Redirect, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import Home from './pages/Home'
 import Favorites from './pages/Favorites'
 import { useEffect, useState } from 'react'
@@ -20,7 +20,7 @@ const App = () => {
   const onRemoveItem = (id) => {
     try {
       axios.delete(`https://611bc63922020a00175a4708.mockapi.io/cart/${id}`)
-      setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)))
+      setCartItems((prev) => prev.filter((item) => Number(item.parentId) !== Number(id)))
     } catch (error) {
       alert('Ошибка при удалении из корзины')
       console.log(error)
@@ -84,16 +84,28 @@ const App = () => {
 
   const onAddToFavorite = async (obj) => {
     try {
-      if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
-        axios.delete(`https://611bc63922020a00175a4708.mockapi.io/favorites/${obj.id}`)
-        setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)))
+      const findItem = favorites.find((item) => Number(item.parentId) === Number(obj.id))
+      if (findItem) {
+        setFavorites((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)))
+        axios.delete(`https://611bc63922020a00175a4708.mockapi.io/favorites/${findItem.id}`)
       } else {
         //деструктуризация response.data
+        setFavorites((prev) => [...prev, obj])
         const { data } = await axios.post(
           'https://611bc63922020a00175a4708.mockapi.io/favorites',
           obj
         )
-        setFavorites((prev) => [...prev, data])
+        setFavorites((prev) =>
+          prev.map((item) => {
+            if (item.parentId === data.parentId) {
+              return {
+                ...item,
+                id: data.id,
+              }
+            }
+            return item
+          })
+        )
       }
     } catch (error) {
       alert('Не удалось добавить в фавориты')
@@ -102,8 +114,11 @@ const App = () => {
   }
 
   const isItemAdded = (id) => {
-    console.log(cartItems)
     return cartItems.some((obj) => Number(obj.parentId) === Number(id))
+  }
+
+  const isItemFavorite = (id) => {
+    return favorites.some((obj) => Number(obj.parentId) === Number(id))
   }
 
   return (
@@ -117,13 +132,14 @@ const App = () => {
         onAddToCart,
         setCartOpened,
         setCartItems,
+        isItemFavorite,
       }}
     >
       <BrowserRouter>
         <div className="wrapper">
           <Header onClickCart={() => setCartOpened(true)} />
-          <Route path="/favorites" exact={true}>
-            <Favorites />
+          <Route path={process.env.PUBLIC_URL + '/favorites'} exact={true}>
+            <Favorites onAddToFavorite={onAddToFavorite} onAddToCart={onAddToCart} />
           </Route>
           <Drawer
             items={cartItems}
@@ -131,16 +147,16 @@ const App = () => {
             onRemoveItem={onRemoveItem}
             opened={cartOpened}
           />
-          <Route path="/" exact={true}>
+          <Route path={process.env.PUBLIC_URL + '/'} exact={true}>
             <Home
               items={items}
               cartItems={cartItems}
+              isLoading={isLoading}
               onAddToFavorite={onAddToFavorite}
               onAddToCart={onAddToCart}
-              isLoading={isLoading}
             />
           </Route>
-          <Route path="/orders">
+          <Route path={process.env.PUBLIC_URL + '/orders'}>
             <Orders />
           </Route>
         </div>

@@ -4,6 +4,11 @@ import { useCart } from '../../hooks/useCart'
 import Info from '../Info/Info'
 import styles from './Drawer.module.scss'
 
+import removeImg from '../../img/btn-remove.svg'
+import arrowImg from '../../img/arrow.svg'
+import completeImg from '../../img/complete-order.jpg'
+import emptyCartImg from '../../img/empty-cart.jpg'
+
 const delay = (time) => new Promise((resolve) => setTimeout(resolve, time))
 
 const Drawer = ({ onRemoveItem, onClose, items = [], opened }) => {
@@ -43,12 +48,7 @@ const Drawer = ({ onRemoveItem, onClose, items = [], opened }) => {
       >
         <h2 className="d-flex justify-between mb-30">
           Корзина
-          <img
-            onClick={onClose}
-            className="removeBtn cu-p"
-            src="/img/btn-remove.svg"
-            alt="Remove"
-          />
+          <img onClick={onClose} className="removeBtn cu-p" src={removeImg} alt="Remove" />
         </h2>
         {items.length > 0 ? (
           <>
@@ -69,7 +69,7 @@ const Drawer = ({ onRemoveItem, onClose, items = [], opened }) => {
                         onRemoveItem(obj.id)
                       }}
                       className="removeBtn"
-                      src="/img/btn-remove.svg"
+                      src={removeImg}
                       alt="Remove"
                     />
                   </div>
@@ -90,7 +90,7 @@ const Drawer = ({ onRemoveItem, onClose, items = [], opened }) => {
                 </li>
               </ul>
               <button disabled={isLoading} className="greenButton" onClick={onClickOrder}>
-                Оформить заказ <img src="/img/arrow.svg" alt="Arrow" />
+                Оформить заказ <img src={arrowImg} alt="Arrow" />
               </button>
             </div>
           </>
@@ -102,7 +102,7 @@ const Drawer = ({ onRemoveItem, onClose, items = [], opened }) => {
                 ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
                 : 'Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ'
             }
-            img={isOrderComplete ? 'img/complete-order.jpg' : 'img/empty-cart.jpg'}
+            img={isOrderComplete ? completeImg : emptyCartImg}
           />
         )}
       </div>
