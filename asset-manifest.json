@@ -1,23 +1,35 @@
 {
   "files": {
     "main.css": "/react-sneakers/static/css/main.44489a55.chunk.css",
-    "main.js": "/react-sneakers/static/js/main.ab8a6f56.chunk.js",
-    "main.js.map": "/react-sneakers/static/js/main.ab8a6f56.chunk.js.map",
+    "main.js": "/react-sneakers/static/js/main.12335a0a.chunk.js",
+    "main.js.map": "/react-sneakers/static/js/main.12335a0a.chunk.js.map",
     "runtime-main.js": "/react-sneakers/static/js/runtime-main.b3180a6d.js",
     "runtime-main.js.map": "/react-sneakers/static/js/runtime-main.b3180a6d.js.map",
     "static/css/2.1cdcfe91.chunk.css": "/react-sneakers/static/css/2.1cdcfe91.chunk.css",
-    "static/js/2.8913d45c.chunk.js": "/react-sneakers/static/js/2.8913d45c.chunk.js",
-    "static/js/2.8913d45c.chunk.js.map": "/react-sneakers/static/js/2.8913d45c.chunk.js.map",
+    "static/js/2.82d737ee.chunk.js": "/react-sneakers/static/js/2.82d737ee.chunk.js",
+    "static/js/2.82d737ee.chunk.js.map": "/react-sneakers/static/js/2.82d737ee.chunk.js.map",
     "index.html": "/react-sneakers/index.html",
     "static/css/2.1cdcfe91.chunk.css.map": "/react-sneakers/static/css/2.1cdcfe91.chunk.css.map",
     "static/css/main.44489a55.chunk.css.map": "/react-sneakers/static/css/main.44489a55.chunk.css.map",
-    "static/js/2.8913d45c.chunk.js.LICENSE.txt": "/react-sneakers/static/js/2.8913d45c.chunk.js.LICENSE.txt"
+    "static/js/2.82d737ee.chunk.js.LICENSE.txt": "/react-sneakers/static/js/2.82d737ee.chunk.js.LICENSE.txt",
+    "static/media/arrow.fc322251.svg": "/react-sneakers/static/media/arrow.fc322251.svg",
+    "static/media/btn-checked.85c89118.svg": "/react-sneakers/static/media/btn-checked.85c89118.svg",
+    "static/media/btn-plus.b88e94c6.svg": "/react-sneakers/static/media/btn-plus.b88e94c6.svg",
+    "static/media/btn-remove.b1fef0aa.svg": "/react-sneakers/static/media/btn-remove.b1fef0aa.svg",
+    "static/media/cart.5113b08f.svg": "/react-sneakers/static/media/cart.5113b08f.svg",
+    "static/media/complete-order.29453d0c.jpg": "/react-sneakers/static/media/complete-order.29453d0c.jpg",
+    "static/media/empty-cart.76aa9150.jpg": "/react-sneakers/static/media/empty-cart.76aa9150.jpg",
+    "static/media/heart-liked.9b947698.svg": "/react-sneakers/static/media/heart-liked.9b947698.svg",
+    "static/media/heart-unliked.b7857eaf.svg": "/react-sneakers/static/media/heart-unliked.b7857eaf.svg",
+    "static/media/heart.fb6fc173.svg": "/react-sneakers/static/media/heart.fb6fc173.svg",
+    "static/media/search.48c52bf5.svg": "/react-sneakers/static/media/search.48c52bf5.svg",
+    "static/media/user.381202f7.svg": "/react-sneakers/static/media/user.381202f7.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.b3180a6d.js",
     "static/css/2.1cdcfe91.chunk.css",
-    "static/js/2.8913d45c.chunk.js",
+    "static/js/2.82d737ee.chunk.js",
     "static/css/main.44489a55.chunk.css",
-    "static/js/main.ab8a6f56.chunk.js"
+    "static/js/main.12335a0a.chunk.js"
   ]
 }
